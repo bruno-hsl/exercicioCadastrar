@@ -5,6 +5,7 @@
 typedef struct{
     char nome[20];
     char email[20];
+    char sexo[10];
 }usuario;
 
 void cadastrar(usuario u[], int indice){
@@ -16,15 +17,28 @@ void cadastrar(usuario u[], int indice){
     fflush(stdin);
     fgets(u[indice].email, sizeof(u[indice].email), stdin);
     fflush(stdin);
-    if(strchr(u[indice].email, '@') == NULL){
-        printf("Email invalido, tente novamente");
-    }else{
-
+    printf("Digite o sexo do usuario: ");
+    fflush(stdin);
+    fgets(u[indice].sexo, sizeof(u[indice].sexo), stdin);
+    fflush(stdin);
+    
+    do{
+        if(strchr(u[indice].email, '@') == NULL){
+        printf("\nEmail invalido, tente novamente");
+        printf("\nDigite o e-mail do usuario: ");
+        fflush(stdin);
+        fgets(u[indice].email, sizeof(u[indice].email), stdin);
+        fflush(stdin);
     }
+    }while(strchr(u[indice].email, '@') == NULL);
     printf("\n\n");
+
+    do{
+
+    }while();
 }
 
-void buscarRegistro(usuario u[], int totalCadastro, int buscarEmail, int indice){
+void buscarRegistro(usuario u[], int totalCadastro, int buscarEmail){
     if(totalCadastro == 0){
         printf("\nNao existe cadastros na lista\n");
         return;
@@ -48,6 +62,7 @@ void imprimir(usuario u[], int totalCadastro){
         for(int i = 0; i < totalCadastro; i++ ){
             printf("\nNome: %s", u[i].nome);
             printf("\nEmail: %s", u[i].email);
+            printf("\nSexo: %s", u[i].sexo);
             printf("\n\n");
         }
     }
