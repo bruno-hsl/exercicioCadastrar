@@ -16,53 +16,34 @@ void cadastrar(usuario u[], int indice){
     fflush(stdin);
     fgets(u[indice].email, sizeof(u[indice].email), stdin);
     fflush(stdin);
+    if(strchr(u[indice].email, '@') == NULL){
+        printf("Email invalido, tente novamente");
+    }else{
+
+    }
     printf("\n\n");
 }
 
-void alterarRegistro(usuario u[], int totalCadastro, int buscarEmail){
-    int opcaoEscolhida;
-    if(totalCadastro == 0 ){
-        printf("Lista vazia");
+void buscarRegistro(usuario u[], int totalCadastro, int buscarEmail, int indice){
+    if(totalCadastro == 0){
+        printf("\nNao existe cadastros na lista\n");
         return;
     }else{
-        for(int i = 0 ; i < totalCadastro; i++){
+        for(int i = 0; i < totalCadastro; i++){
             if(u[i].email == buscarEmail){
-                printf("\nNome: %s ", u[i].nome);
-                printf("\nIdade: %s ", u[i].email);
-                printf("\nAlterar os dados: ");
-
-                printf("Digite 1 para alterar o nome, Digite 2 para alterar a idade, Digite 3 para alterar todos os campos");
-                scanf("%d", &opcaoEscolhida);
-                switch (opcaoEscolhida){
-                    case 1: 
-                        printf("Alteracao do nome: ");
-                         fflush(stdin);
-                        fgets(u[i].nome, sizeof(u[i].nome), stdin);
-                         fflush(stdin);
-                    break;
-                    case 2: 
-                        printf("Alteracao da idade: ");
-                         fflush(stdin);
-                         fgets(u[i].email, sizeof(u[i].email), stdin);
-                         fflush(stdin);
-                    break;
-                    case 3:
-                        printf("Alteracao do nome: ");
-                        fflush(stdin);
-                        fgets(u[i].nome, sizeof(u[i].nome), stdin);
-                        fflush(stdin);
-                        printf("Alteracao da idade: ");
-                        fgets(u[i].email, sizeof(u[i].email), stdin);
-                        fflush(stdin);
-                }
+                printf("\nNome do registro encontrado: %s", u[i].nome);
+                return;
             }
         }
     }
+    printf("\nRegistro nao encontrado na lista");
 }
+
+
 
 void imprimir(usuario u[], int totalCadastro){
     if(totalCadastro == 0 ){
-        printf("\n\nnao existem alunos cadastrados");
+        printf("\n\nnao existem usuariaos cadastrados");
     }else{
         for(int i = 0; i < totalCadastro; i++ ){
             printf("\nNome: %s", u[i].nome);
@@ -71,8 +52,6 @@ void imprimir(usuario u[], int totalCadastro){
         }
     }
 }
-
-
 
 int main(){
     usuario u[TAM];
@@ -99,11 +78,7 @@ int main(){
             case 2:
             imprimir(u, totalCadastro);
             break;
-            case 3:
-            printf("Digite o e-mail para buscar: ");
-            fgets(u[indice].email, sizeof(u[indice].email), stdin);
-            alterarRegistro(u,totalCadastro, buscarEmail);
-            break;
+          
         }
     }while(opcao != 0); 
 }
