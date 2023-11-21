@@ -143,6 +143,15 @@ void editarRegistro(usuario u[], int totalCadastro, const char buscarEmail[]){
     }
 }
 
+void excluirRegistro(usuario u[], int totalCadastro, const char buscarEmail[]){
+        for(int i = 0; i < totalCadastro; i++){
+            if(strcmp(u[i].email, buscarEmail) == 0){
+               sizeof(u[i].nome);
+            }
+        }
+    }
+
+
 void imprimir(usuario u[], int totalCadastro){
     if(totalCadastro == 0 ){
         printf("\n\nnao existem usuariaos cadastrados");
@@ -150,7 +159,7 @@ void imprimir(usuario u[], int totalCadastro){
         for(int i = 0; i < totalCadastro; i++){
             printf("\nId: %d", u[i].id);
             printf("\nNome: %s", u[i].nome);
-            printf("Email: %s", u[i].email);
+            printf("\nEmail: %s", u[i].email);
             printf("\nSexo: %s", u[i].sexo);
             printf("\nEndereco: %s", u[i].endereco);
             printf("\nAltura: %lf", u[i].altura);
@@ -205,6 +214,11 @@ int main(){
             printf("Digite o email do usuario para editar: ");
             scanf("%19s", buscarEmail);
             editarRegistro(u, totalCadastro, buscarEmail);
+            break;
+            case 5:
+            printf("Digite o email do usuario pra excluir: ");
+            scanf("%19s", buscarEmail);
+            excluirRegistro(u, totalCadastro, buscarEmail);
             break;
         }
     }while(opcao != 0); 
