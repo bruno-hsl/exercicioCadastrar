@@ -143,14 +143,18 @@ void editarRegistro(usuario u[], int totalCadastro, const char buscarEmail[]){
     }
 }
 
-void excluirRegistro(usuario u[], int totalCadastro, const char buscarEmail[]){
-        for(int i = 0; i < totalCadastro; i++){
-            if(strcmp(u[i].email, buscarEmail) == 0){
-               sizeof(u[i].nome);
+void excluirRegistro(usuario u[], int *totalCadastro, const char buscarEmail[]) {
+    for (int i = 0; i < *totalCadastro; i++) {
+        if (strcmp(u[i].email, buscarEmail) == 0) {
+            for (int j = i; j < *totalCadastro - 1; j++) {
             }
+            (*totalCadastro)--;
+            printf("\nRegistro excluido com sucesso.\n");
+            return;
         }
     }
-
+    printf("\nRegistro nao encontrado na lista\n");
+}
 
 void imprimir(usuario u[], int totalCadastro){
     if(totalCadastro == 0 ){
