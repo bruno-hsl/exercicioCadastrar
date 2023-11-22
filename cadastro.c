@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#define TAM 2
+#define TAM 1000
 
 typedef struct{
     char nome[20];
